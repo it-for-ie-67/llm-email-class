@@ -21,14 +21,15 @@ function App() {
 
   function handleSubmit() {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-    const textInstruction = `The tone should be ${tone}. The topic is [${story}]. The email composer is a ${gender} student.`;
+    const textInstruction = `The writer is a ${gender} student. The tone should be ${tone}.`;
+    const textPrompt = `Write an email to the advisor in Thai. The topic is [${story}].`;
     const payload = {
       contents: [
         {
           role: "user",
           parts: [
             {
-              text: "Write an email to the advisor in Thai.",
+              text: textPrompt,
             },
           ],
         },
@@ -50,7 +51,7 @@ function App() {
       },
     };
 
-    console.log(payload.contents[0].parts[0]);
+    console.log(payload);
 
     setLoading(true);
 
